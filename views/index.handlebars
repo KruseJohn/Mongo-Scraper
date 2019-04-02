@@ -1,0 +1,72 @@
+{{!-- for each article post this --}}
+
+{{#each articles}}
+  <div class="card mb-3">
+    <div class="card-header text-center text-black" style="font-family: 'Marcellus SC', serif;">
+      <h4>{{this.title}}</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-3 card-img mt-1" alt="Card image" style="width: 200; height: 200;">
+          <img src="{{this.image}}">
+        </div>
+        <div class="col-8">
+          <h6 style="font-family: 'Marcellus SC', serif;">Article Summary:</h6>
+          <p>{{this.summary}}</p>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col-3">
+          <h6 class="pt-3 pl-5" style="font-family: 'Marcellus SC', serif;">Current Comments:</h6>
+        </div>
+        <div class="col-6">
+          {{!-- comments here --}}
+          {{#if articles.note}} 
+            {{#each articles.note}}
+              <p>{{body}}</p>
+            {{/each}}
+          {{else}}
+          <p class="mt-3" style="font-family: 'Marcellus SC', serif;">No comments have been made yet. Feel free to leave one.</p>
+          {{/if}}
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <a href="{{this.link}}" type="button" class="btn btn-secondary ml-3 mr-2" style="font-family: 'Marcellus SC', serif;" target="_blank">Read Article</a>
+        <button type="button" class="btn btn-info mr-2" id="save-article" style="font-family: 'Marcellus SC', serif;" data-id="{{this._id}}">Save Article</button>
+        <button type="button" class="btn btn-info mr-2" id="delete-article" style="font-family: 'Marcellus SC', serif;" data-id="{{this._id}}">Delete Article</button>
+        {{!-- button to modal for make comment --}}
+        <button type="button" class="btn btn-secondary mr-2" data-toggle="modal" style="font-family: 'Marcellus SC', serif;" data-target="#exampleModal">Make Comment</button>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  
+  <br>
+
+<div class="modal" tabindex="-1" role="dialog" id="comment-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Make a Comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div id="comment-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="/comment/{{articles._id}}" method="POST"></form>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Type your Comment Here</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1 comment-input" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="save-comment">Save Comment</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
