@@ -1,11 +1,6 @@
- img {
-   width: 80%;
-   height: auto;
- }
-
- #logo {
-   width: 100px;
-   height: auto;
+ #articleImage {
+   width: 200px;
+   height: auto;  
  }
 
  nav {
