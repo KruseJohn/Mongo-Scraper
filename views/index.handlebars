@@ -1,25 +1,29 @@
 {{!-- for each article post this --}}
 
 {{#each articles}}
-  <div class="card mb-3">
-    <div class="card-header text-center text-black" style="font-family: 'Marcellus SC', serif;">
-      <h4>{{this.title}}</h4>
+  <div class="card my-5" style="border: none;">
+    <div class="card-header text-center text-black mx-5" style="background-color: transparent; border-bottom: 1px solid rgb(105, 105, 105)">
     </div>
     <div class="card-body">
-      <div class="row">
-        <div class="col-3 card-img mt-1" alt="Card image" style="width: 200; height: 200;">
+      <div class="row mt-3">
+        <div class="col-1"></div>
+        <div class="col-6">
+          <h4 style="font-family: 'Marcellus SC', serif;">{{this.title}}</h4>
+          <br>
+          <p style="font-family: Georgia, serif;">{{this.summary}}</p>
+        </div>
+        <div class="col-4 card-img mt-1" alt="Card image">
           <img src="{{this.image}}">
         </div>
-        <div class="col-8">
-          <h6 style="font-family: 'Marcellus SC', serif;">Article Summary:</h6>
-          <p>{{this.summary}}</p>
-        </div>
+        
+        
       </div>
       <div class="row mt-1">
+        <div class="col-1"></div>
         <div class="col-3">
-          <h6 class="pt-3 pl-5" style="font-family: 'Marcellus SC', serif;">Current Comments:</h6>
+          <h6 class="pt-3 pl-3" style="font-family: 'Marcellus SC', serif;">Current Comments:</h6>
         </div>
-        <div class="col-6">
+        <div class="col-5">
           {{!-- comments here --}}
           {{#if articles.note}} 
             {{#each articles.note}}
@@ -31,10 +35,11 @@
         </div>
       </div>
       <br>
-      <div class="row">
-        <a href="{{this.link}}" type="button" class="btn btn-secondary ml-3 mr-2" style="font-family: 'Marcellus SC', serif;" target="_blank">Read Article</a>
-        <button type="button" class="btn btn-info mr-2" id="save-article" style="font-family: 'Marcellus SC', serif;" data-id="{{this._id}}">Save Article</button>
-        <button type="button" class="btn btn-info mr-2" id="delete-article" style="font-family: 'Marcellus SC', serif;" data-id="{{this._id}}">Delete Article</button>
+      <div class="row mb-5">
+        <div class="col-1"></div>
+        <a href="{{this.link}}" type="button" id="read-article" class="btn btn-secondary ml-3 mr-2" style="font-family: 'Marcellus SC', serif;" target="_blank">Read Article</a>
+        <button type="button" class="btn btn-secondary mr-2" id="save-article" style="font-family: 'Marcellus SC', serif;" data-id="{{this._id}}">Save Article</button>
+        <button type="button" class="btn btn-secondary mr-2" id="delete-article" style="font-family: 'Marcellus SC', serif;" data-id="{{this._id}}">Delete Article</button>
         {{!-- button to modal for make comment --}}
         <button type="button" class="btn btn-secondary mr-2" data-toggle="modal" style="font-family: 'Marcellus SC', serif;" data-target="#exampleModal">Make Comment</button>
       </div>

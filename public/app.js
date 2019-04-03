@@ -12,7 +12,13 @@ $("#scrape-articles").on("click", function(event) {
     
   });
 
-// Whenever someone clicks a "make a comment" button
+  $("#read-article").on("click", "url", function() {
+    var url = "https://www.newyorker.com" + data.link;
+    console.log(data.link);
+    console.log(url);
+  });
+
+// Whenever someone clicks a "make comment" button
 $("body").on("click", "#make-comment", function() {
   // Empty the notes from the note section
   console.log("trying to get info on title");

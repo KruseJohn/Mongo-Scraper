@@ -9,10 +9,9 @@ var db = require("../models");
 var express = require("express");
 var app = express();
 
-//fetch all had app.js file contents here
 // Grab the headlines as a json
 module.exports = function (app) {
-  // A GET route for scraping the star tribune website
+  // A GET route for scraping the new yorker website
   app.get("/scrape", function (req, res) {
     // First, we grab the body of the html with request
     axios.get("https://www.newyorker.com/humor/borowitz-report").then(function (response) {
@@ -20,17 +19,15 @@ module.exports = function (app) {
       // Then, we load that into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(response.data);
 
-      // Now, we grab every h2 within an div tag, and do the following:
-      //$("div h2").each(function(i, element) {
-      //now try for every article with an image then get headline, link and summary
+      // Div which contains every article with an image, headline, link and summary
       $(".River__riverItem___3huWr").each(function (i, element) {
-        //$("div.item-info").each(function (i, element) {
 
         // Save an empty result object
         var result = {};
+        var url = "https://www.newyorker.com";
 
         result.title = $(this).find("h4").text().trim();
-        result.link = $(this).find("a.Link__link___3dWao").attr("href");
+        result.link = url + $(this).find("a.Link__link___3dWao").attr("href");
         result.summary = $(this).find(".River__dek___CayIg").text().trim();
         result.image = $(this).find("picture.component-responsive-image").find("img").attr("src");
 

@@ -72,7 +72,6 @@ module.exports = function (app) {
       }
       //Otherwise, send the result of this query to the browser.
       else {
-        //res.json(result);
         res.render("saved", {
           articles: result,
         });
