@@ -54,8 +54,8 @@
 
  textarea,
  input {
-   display: block;
-   width: 100%;
+   justify-content: center;
+   width: 50%;
    background-color: #FCF5C7;
  }
 

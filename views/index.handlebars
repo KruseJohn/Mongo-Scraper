@@ -10,7 +10,10 @@
         <div class="col-6">
           <h4 style="font-family: 'Marcellus SC', serif;">{{this.title}}</h4>
           <br>
-          <p style="font-family: Georgia, serif;">{{this.summary}}</p>
+          <a style="font-family: Georgia, serif;">{{this.summary}}</a>
+          <br>
+          <a href="{{this.link}}" id="read-article" style="font-family: 'Marcellus SC', serif;" target="_blank">read more...</a>
+          
         </div>
         <div class="col-5 card-img mt-1" alt="Card image">
           <img src="{{this.image}}" id="articleImage">
@@ -33,13 +36,10 @@
         </div>
       </div>
       <br>
-      <div class="row mb-5">
-        <div class="col-1"></div>
-        <a href="{{this.link}}" type="button" id="read-article" class="btn btn-secondary ml-3 mr-2" style="font-family: 'Marcellus SC', serif;" target="_blank">Read Article</a>
-        <button type="button" class="btn btn-secondary mr-2" id="save-article" style="font-family: 'Marcellus SC', serif;" data-id="{{this._id}}">Save Article</button>
-        <button type="button" class="btn btn-secondary mr-2" id="delete-article" style="font-family: 'Marcellus SC', serif;" data-id="{{this._id}}">Delete Article</button>
-        {{!-- button to modal for make comment --}}
-        <button type="button" class="btn btn-secondary mr-2" data-toggle="modal" style="font-family: 'Marcellus SC', serif;" data-target="#exampleModal">Make Comment</button>
+      <div class="row">
+        <div class="col-7">
+        <button type="button" class="btn btn-outline-dark mr-4" id="save-article" style="font-family: 'Marcellus SC', serif; float: right;" data-id="{{this._id}}"><strong>Save Article</strong></button>
+      </div>
       </div>
     </div>
   </div>
@@ -61,7 +61,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="exampleFormControlTextarea1">Type your Comment Here</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1 comment-input" rows="2"></textarea>
+              <textarea class="form-control" id="comment-input" rows="2"></textarea>
             </div>
           </div>
           <div class="modal-footer">

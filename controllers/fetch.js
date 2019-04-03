@@ -1,6 +1,6 @@
 var axios = require("axios");
 var cheerio = require("cheerio");
-
+var Article = require("../models/Article.js");
 // Require all models
 var db = require("../models");
 
@@ -50,4 +50,5 @@ module.exports = function (app) {
       res.send("Scrape Complete");
     });
   });
+
 }

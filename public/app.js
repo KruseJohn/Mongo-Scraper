@@ -12,12 +12,6 @@ $("#scrape-articles").on("click", function(event) {
     
   });
 
-  $("#read-article").on("click", "url", function() {
-    var url = "https://www.newyorker.com" + data.link;
-    console.log(data.link);
-    console.log(url);
-  });
-
 // Whenever someone clicks a "make comment" button
 $("body").on("click", "#make-comment", function() {
   // Empty the notes from the note section
@@ -36,7 +30,7 @@ $("body").on("click", "#make-comment", function() {
       $('#comment-modal').modal('show');
       console.log(data);
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#notes").append("<h4>" + data.title + "</h4>");
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
@@ -62,10 +56,10 @@ $("body").on("click", "#save-comment", function(event) {
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
-    url: "/articles/" + thisId,
+    url: "/notes/save/" + thisId,
     data: {
       // Value taken from note textarea
-      body: $("#comment-input").trim().val()
+      text: $("#note-Body" + thisId).val()
     }
   })
     // With that done
@@ -73,7 +67,9 @@ $("body").on("click", "#save-comment", function(event) {
       // Log the response
       console.log(data);
       // Empty the notes section
-      $("#comment-input").empty();
+      $("#note-Body" + thisId).val("");
+      $(".modalNote").modal("hide");
+      window.location = "/saved"
     })
     .catch(function (err) {
       console.log("Error in saving comment in app.js not working: " + err);
@@ -120,26 +116,6 @@ $("body").on("click", "#unsave-article", function (event) {
     })
     .catch(function (err) {
       console.log("Error in unsaving article app.js not working: " + err);
-    });
-});
-
-//whenver someone clicks on the delete article button
-$("body").on("click", "#delete-article", function (event) {
-  // Grab the id associated with the article from the submit button
-  var thisId = $(this).attr("data-id");
-  console.log("article saved with this id: " + thisId);
-  // Run a DELETE request to remove article from database
-  $.ajax({
-    method: "DELETE",
-    url: "/deletearticles/" + thisId,
-  })
-    // With that done
-    .then(function (data) {
-      console.log("the article with this id: " + thisId + " was deleted from the database");
-      location.reload();
-    })
-    .catch(function (err) {
-      console.log("Error in article app.js not working: " + err);
     });
 });
 

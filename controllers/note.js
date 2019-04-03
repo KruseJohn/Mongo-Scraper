@@ -53,17 +53,34 @@ module.exports = function (app) {
   
 
   //route for creating a new comment
-  app.post("/notes", function (req, res) {
-    // Find all Notes
-    db.Note.find({})
-      .then(function (dbNote) {
-        // If all Notes are successfully found, send them back to the client
-        res.json(dbNote);
-      })
-      .catch(function (err) {
-        // If an error occurs, send the error back to the client
-        res.json(err);
-      });
+  app.post("/notes/save/:id", function (req, res) {
+    // Create a new note and pass the req.body to the entry
+    var newNote = new Note({
+      body: req.body.text,
+      article: req.params.id
+  });
+  console.log(req.body)
+  // And save the new note the db
+  newNote.save(function (error, note) {
+
+      if (error) {
+          console.log(error);
+      }
+      else {
+          Article.findOneAndUpdate({ "_id": req.params.id }, { $push: { "notes": note } })
+              /////???EXEC VS THEN???
+              .exec(function (err) {
+
+                  if (err) {
+                      console.log(err);
+                      res.send(err);
+                  }
+                  else {
+                      res.send(note);
+                  }
+              });
+      }
+  });
   });
 
   // Route for retrieving all Notes from the db

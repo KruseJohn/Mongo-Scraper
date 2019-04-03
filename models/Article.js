@@ -9,7 +9,8 @@ var ArticleSchema = new Schema({
   // `title` is required and of type String
   title: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   // `link` is required and of type String
   link: {
@@ -21,13 +22,13 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
+  // Image of the article
   image: {
     type: String
   },
   //`saved` is this Article saved? want to be default to false until save button clicked
   saved: {
     type: Boolean,
-    required: true,
     default: false
   },
   // `note` is an object that stores a Note id

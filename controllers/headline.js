@@ -79,36 +79,20 @@ module.exports = function (app) {
     });
   });
 
-  // // Route for getting all articles from the db
-  // app.get("/all", function (req, res) {
-  //   // Grab every document in the Articles collection
-  //   db.Article.find({ saved: false }, function (err, result) {
-  //     if (err) {
-  //       console.log("Error in finding all articles: " + err);
-  //     }
-  //     else {
-  //       res.render("index", {
-  //         articles: result
-  //       });
-  //     }
-  //   });
-  // });
-
-  //this grabs id of article and deletes it from the database
-  app.delete("/deletearticles/:id", function (req, res) {
-
-    db.Article.findOneAndRemove({ _id: req.params.id })
-      .then(function (result) {
-        console.log("this article has been deleted");
-        res.json(result);
-
-      })
-      .catch(function (err) {
-        res.json(err);
-        console.log("Error in finding saved articles: " + err);
-      });
-  });
-
+   // Route for getting all articles from the db
+   app.get("/all", function (req, res) {
+     // Grab every document in the Articles collection
+     db.Article.find({ saved: false }, function (err, result) {
+      if (err) {
+         console.log("Error in finding all articles: " + err);
+       }
+       else {
+         res.render("index", {
+           articles: result
+         });
+       }
+     });
+   });
 
   app.post('/', function (req, res) {
     res.json(data); 
