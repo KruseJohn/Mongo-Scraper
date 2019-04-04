@@ -12,29 +12,29 @@ $("#scrape-articles").on("click", function(event) {
     
   });
 
-// Whenever someone clicks a "make comment" button
+// Whenever someone clicks "comment" button
 $("body").on("click", "#make-comment", function() {
-  // Empty the notes from the note section
+  
   console.log("trying to get info on title");
-  //$("#notes").empty();
-  // Save the id from the p tag
+  
+  // Save the id
   var thisId = $(this).attr("data-id");
 
-  // Now make an ajax call for the Article
+  // Make an ajax call for the Article
   $.ajax({
     method: "GET",
     url: "/articles/" + thisId
   })
-    // With that done, add the note information to the page
+    // Add the note information to the page
     .then(function (data) {
       $('#comment-modal').modal('show');
       console.log(data);
       // The title of the article
-      $("#notes").append("<h4>" + data.title + "</h4>");
+      $(".modal-title").append("<h5>" + data.title + "</h5>");
       // A textarea to add a new note body
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='save-comment'>Save Note</button>");
+     // $("#notes").append("<button data-id='" + data._id + "' id='save-comment'>Save Note</button>");
 
       // If there's a note in the article
       if (data.note) {
@@ -91,7 +91,6 @@ $("body").on("click", "#save-article", function (event) {
   // With that done
   .then(function (data) {
     // Log the response
-    //console.log("suzy lives here");
     location.reload();
   })
   .catch(function (err) {

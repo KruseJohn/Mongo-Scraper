@@ -4,10 +4,11 @@
   <h4 id="saved" style="color: red;">Saved Articles</h4>
   {{!--> articles/saved-articles saved=true--}}
   {{#if articles}}
-  {{#each articles}} 
+  {{#each articles}}
   {{!-- {{#each articles.saved}} --}}
   <div class="card my-5" style="border: none;">
-    <div class="card-header text-center text-black mx-5" style="background-color: transparent; border-bottom: 1px solid rgb(105, 105, 105)">
+    <div class="card-header text-center text-black mx-5"
+      style="background-color: transparent; border-bottom: 1px solid rgb(105, 105, 105)">
     </div>
     <div class="card-body">
       <div class="row mt-3">
@@ -17,7 +18,8 @@
           <br>
           <a style="font-family: Georgia, serif;">{{this.summary}}</a>
           <br>
-          <a href="{{this.link}}" id="read-article" style="font-family: 'Marcellus SC', serif;" target="_blank">read more...</a>
+          <a href="{{this.link}}" id="read-article" style="font-family: 'Marcellus SC', serif;" target="_blank">read
+            more...</a>
         </div>
         <div class="col-5 card-img mt-1" alt="Card image">
           <img src="{{this.image}}" id="articleImage">
@@ -32,62 +34,68 @@
           {{!-- comments here --}} {{#if articles.note}} {{#each articles.note}}
           <p>{{body}}</p>
           {{/each}} {{else}}
-          <p class="mt-3" style="font-family: 'Marcellus SC', serif;">No comments have been made yet. Feel free to leave one.</p>
+          <p class="mt-3" style="font-family: 'Marcellus SC', serif;">No comments have been made yet. Feel free to leave
+            one.</p>
           {{/if}}
         </div>
       </div>
       <br>
       <div class="row mb-5">
         <div class="col-8">
-        <button type="button" class="btn btn-outline-dark mr-2" id="unsave-article" style="font-family: 'Marcellus SC', serif; float: right;" data-id="{{this._id}}"><strong>Remove from Saved</strong></button>
-        <button type="button" class="btn btn-outline-dark addNote mr-2" id="make-comment" data-toggle="modal" data-target="#noteModal{{this._id}}" data-id={{this._id}} style="font-family: 'Marcellus SC', serif; float: right;"><strong>Make Comment</strong></button>
-      </div>
+          <button type="button" class="btn btn-outline-dark mr-2" id="unsave-article"
+            style="font-family: 'Marcellus SC', serif; float: right;" data-id="{{this._id}}"><strong>Remove from
+              Saved</strong></button>
+          <button type="button" class="btn btn-outline-dark addNote mr-2" id="make-comment" data-toggle="modal" data-id={{this._id}}
+            style="font-family: 'Marcellus SC', serif; float: right;"><strong>Comment</strong></button>
+        </div>
       </div>
     </div>
   </div>
-   {{else}}
+  {{else}}
   <p>No articles have been saved.</p>
   {{/each}}
   {{/if}}
-  <div class="modal" id="comment-modal" tabindex="-1" role="dialog">
+  <div class="modal fade" id="comment-modal" tabindex="-1" role="dialog"
+      style="padding-top: 200px;">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-            <h4 class="modal-title">Comments: {{this.title}}</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+        <div class="modal-header" style="font-family: 'Marcellus SC', serif;">
+          <h4 class="modal-title">{{this.title}}</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+              aria-hidden="true">&times;</span>
           </button>
         </div>
-          <div class="modal-body">
-            {{#if this.notes}}
-                    {{#each this.notes}}
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <p class="previousNotes"> {{this.body}}</p>
-                                <button type="button" class="btn btn-danger delete-note-btn" data-note-id={{this._id}} data-article-id={{this.article}}> X </button>
-                            </div>
-                        </div>
-                    {{/each}}
-                {{else}}
-                    <div class="panel panel-default">
-                        <div class="panel-body" id="comment-input">
-                            <h4>Add a comment!</h4>
-                        </div>
-                    </div>
-                {{/if}}
-                <div class="form-group">
-                    <textarea id="note-Body{{this._id}}" class="form-control" rows="4" placeholder="New Note"></textarea>
-                </div>
+        <div class="modal-body">
+          {{#if this.notes}}
+          {{#each this.notes}}
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <p class="previousNotes"> {{this.body}}</p>
+              <button type="button" class="btn btn-danger delete-note-btn" data-note-id={{this._id}}
+                data-article-id={{this.article}}> X </button>
+            </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="save-comment" data-id={{this._id}}>Save Comment</button>
-            <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
+          {{/each}}
+          {{else}}
+          <div class="panel panel-default">
+            <div class="panel-body">
+            </div>
+          </div>
+          {{/if}}
+          <div class="form-group">
+            <textarea id="note-Body{{this._id}}" class="form-control" rows="4"
+              placeholder="Add comment here..."></textarea>
           </div>
         </div>
-        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" id="save-comment" data-id={{this._id}}>Save
+            Comment</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+
 <!--Clicked Notes Modal-->
-    {{#each article}} {{> modal }} {{/each}}
+{{#each article}} {{> modal }} {{/each}}

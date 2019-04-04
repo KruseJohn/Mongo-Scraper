@@ -13,10 +13,10 @@ var app = express();
 module.exports = function (app) {
   // A GET route for scraping the new yorker website
   app.get("/scrape", function (req, res) {
-    // First, we grab the body of the html with request
+   
     axios.get("https://www.newyorker.com/humor/borowitz-report").then(function (response) {
 
-      // Then, we load that into cheerio and save it to $ for a shorthand selector
+      // Load response into cheerio and save it to $ for a shorthand selector
       var $ = cheerio.load(response.data);
 
       // Div which contains every article with an image, headline, link and summary
