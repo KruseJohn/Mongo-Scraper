@@ -1,6 +1,7 @@
 # Mongo-Scraper
 
-Mongo-Scraper is a web app that lets users view and leave comments on articles from the satirical "Borowitz Report" found in the New Yorker magazine.  Each article is scraped from the popular feature using Mongoose and Cheerio...
+### Mongo-Scraper is a web app that lets users view and leave comments on articles from the satirical "Borowitz Report" found in the New Yorker magazine.  Each article is scraped from the popular feature using Mongoose and Cheerio...
+
 
 ![newYorker](https://github.com/KruseJohn/Mongo-Scraper/blob/master/public/assets/img/newyorker2.png)
 
@@ -12,7 +13,7 @@ Mongo-Scraper is a web app that lets users view and leave comments on articles f
 Depolyed to heroku: https://mongo-scraper-pro.herokuapp.com/
 
 ### When we first go to the Mongo-Scraper, the article section is blank but can be populated by pressing the "Scrape The Borowitz Report!" button.  Each article displays a title, image, and brief summary, and a "Save Article" button is attached as well. A user may read any article further by pressing the "read more" hyperlink...
-![mongo1](https://github.com/KruseJohn/Mongo-scraper/blob/master/public/assets/img/mongo1.gif)
+![mongo1](https://github.com/KruseJohn/Mongo-Scraper/blob/master/public/assets/img/mongo1.gif)
 
 
 
